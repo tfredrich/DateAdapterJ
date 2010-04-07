@@ -1,0 +1,1 @@
+DateAdapterJ is a small java library to support conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.
