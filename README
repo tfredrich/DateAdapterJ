@@ -1,1 +1,21 @@
-DateAdapterJ is a small java library to support conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.
+DateAdapterJ is a small java library to support the conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.  This facilitates JSON and XML date and timestamp conversion, as well as, common web UI parameter processing.
+
+Default output formats are:
+1) for Date: yyyy-MM-dd (e.g. 2010-04-07)
+2) for Timestamp: yyyy-MM-dd'T'HH:mm:ss.SSSz (e.g. 2010-04-07T11:52:15.123-00:00
+
+Note: All dates (and times) are converted to UTC internally.  So output is always UTC adjusted.
+
+Default accepted input formats for dates are (and are attempted in this order):
+1) yyyy-MM-dd
+2) yyyy/MM/dd
+3) MM/dd/yyyy
+4) yyyy-MM-dd'T'HH:mm:ssz
+
+Default accepted input formats for timestamps are (and are attempted in this order):
+1) yyyy-MM-dd'T'HH:mm:ss.SSSz
+2) yyyy-MM-dd'T'HH:mm:ssz
+3) yyyy-MM-dd'T'HH:mmz
+4) yyyy-MM-dd
+
+These can easily be configured for your various input/output processing needs.
