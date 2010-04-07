@@ -36,9 +36,11 @@ public final class DateAdapterConstants
 	public static final String DATE_OUTPUT_FORMAT = "yyyy-MM-dd";
 	public static final String[] DATE_INPUT_FORMATS =
 	{
+		"yyyy-MM-dd'T'HH:mm:ss.SSSz",
+		"yyyy-MM-dd'T'HH:mm:ss.SSSZ",
 		"yyyy-MM-dd'T'HH:mm:ssz",
+		"yyyy-MM-dd'T'HH:mm:ssZ",
 		DATE_OUTPUT_FORMAT,
-		"yyyy/MM/dd",
 		"MM/dd/yyyy"
 	};
 
@@ -49,8 +51,11 @@ public final class DateAdapterConstants
 	public static final String[] TIMESTAMP_INPUT_FORMATS =
 	{
 		TIMESTAMP_OUTPUT_FORMAT,
+		"yyyy-MM-dd'T'HH:mm:ss.SSSZ",
 		"yyyy-MM-dd'T'HH:mm:ssz",
+		"yyyy-MM-dd'T'HH:mm:ssZ",
 		"yyyy-MM-dd'T'HH:mmz",
+		"yyyy-MM-dd'T'HH:mmZ",
 		"yyyy-MM-dd"
 	};
 
