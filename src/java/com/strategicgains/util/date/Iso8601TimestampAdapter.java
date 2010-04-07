@@ -1,5 +1,5 @@
 /*
- * Copyright 2009, Strategic Gains, Inc.
+ * Copyright 2010, Strategic Gains, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,19 @@
 
 package com.strategicgains.util.date;
 
-import static com.strategicgains.util.date.DateAdapterConstants.TIMESTAMP_INPUT_FORMATS;
-import static com.strategicgains.util.date.DateAdapterConstants.TIMESTAMP_OUTPUT_FORMAT;
 
 /**
- * @author Todd Fredrich
+ * Utilizes the {@link Iso8601TimestampCallback} to implement ISO 8601 time point parsing and formatting.
+ * 
+ * @author toddf
  * @since Nov 13, 2009
  */
-public class TimestampAdapter
-extends DateAdapter
+public class Iso8601TimestampAdapter
+extends TimestampAdapter
 {
-	public TimestampAdapter()
+	public Iso8601TimestampAdapter()
 	{
-		super(TIMESTAMP_OUTPUT_FORMAT, TIMESTAMP_INPUT_FORMATS);
+		super();
+		setPreParseCallback(new Iso8601TimestampCallback());
 	}
 }
