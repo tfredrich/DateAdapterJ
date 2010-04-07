@@ -50,15 +50,12 @@ public final class DateAdapterConstants
 	public static final String[] TIMESTAMP_INPUT_FORMATS =
 	{
 		TIMESTAMP_OUTPUT_FORMAT,
-		"yyyy-MM-dd'T'HH:mm:ss.SSSZZ:ZZ",
 		"yyyy-MM-dd'T'HH:mm:ss.SSSZ",
 
 		TIME_POINT_OUTPUT_FORMAT,
-		"yyyy-MM-dd'T'HH:mm:ssZZ:ZZ",
 		"yyyy-MM-dd'T'HH:mm:ssZ",
 
 		"yyyy-MM-dd'T'HH:mm'Z'",
-		"yyyy-MM-dd'T'HH:mmZZ:ZZ",
 		"yyyy-MM-dd'T'HH:mmZ",
 	};
 

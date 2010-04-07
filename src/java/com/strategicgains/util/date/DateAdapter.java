@@ -62,12 +62,42 @@ implements TextAdapter<Date>
 	public Date parse(String dateString)
 	throws ParseException
 	{
-		return processor.parse(dateString);
+		String preprocessed = beforeParse(dateString);
+		Date date = processor.parse(preprocessed);
+		return afterParse(date);
 	}
 	
 	@Override
 	public String format(Date date)
 	{
-		return processor.format(date);
+		Date preprocessed = beforeFormat(date);
+		String string = processor.format(preprocessed);
+		return afterFormat(string);
+	}
+	
+	
+	// SECTION: PRE-PROCESSING
+	
+	protected String beforeParse(String string)
+	{
+		return string;
+	}
+	
+	protected Date beforeFormat(Date date)
+	{
+		return date;
+	}
+	
+	
+	// SECTION: POST-PROCESSING
+	
+	protected Date afterParse(Date date)
+	{
+		return date;
+	}
+	
+	protected String afterFormat(String string)
+	{
+		return string;
 	}
 }

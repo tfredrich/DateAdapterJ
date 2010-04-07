@@ -20,6 +20,9 @@ package com.strategicgains.util.date;
 import static com.strategicgains.util.date.DateAdapterConstants.TIMESTAMP_INPUT_FORMATS;
 import static com.strategicgains.util.date.DateAdapterConstants.TIMESTAMP_OUTPUT_FORMAT;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author toddf
  * @since Nov 13, 2009
@@ -27,8 +30,34 @@ import static com.strategicgains.util.date.DateAdapterConstants.TIMESTAMP_OUTPUT
 public class TimestampAdapter
 extends DateAdapter
 {
+	private static final String SHORT_TZ_REGEX = ".*T.*[-+]\\d\\d$";
+	private static final String COLON_DELIM_TZ_REGEX = "([-+]\\d\\d):(\\d\\d)$";
+	
+	private static final Pattern SHORT_TZ_PATTERN = Pattern.compile(SHORT_TZ_REGEX);
+	private static final Pattern COLON_TZ_PATTERN = Pattern.compile(".*T.*" + COLON_DELIM_TZ_REGEX);
+	
 	public TimestampAdapter()
 	{
 		super(TIMESTAMP_OUTPUT_FORMAT, TIMESTAMP_INPUT_FORMATS);
+	}
+
+	@Override
+	protected String beforeParse(String string)
+	{
+		if (SHORT_TZ_PATTERN.matcher(string).matches())
+		{
+			return string + "00";
+		}
+		else
+		{
+			Matcher colonMatcher = COLON_TZ_PATTERN.matcher(string);
+
+			if (colonMatcher.matches())
+			{
+				return string.replaceAll(COLON_DELIM_TZ_REGEX, colonMatcher.group(1) + colonMatcher.group(2));
+			}
+		}
+
+		return string;
 	}
 }
