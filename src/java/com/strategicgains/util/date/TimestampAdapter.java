@@ -29,6 +29,6 @@ extends DateAdapter
 {
 	public TimestampAdapter()
 	{
-		super(TIMESTAMP_INPUT_FORMATS, TIMESTAMP_OUTPUT_FORMAT);
+		super(TIMESTAMP_OUTPUT_FORMAT, TIMESTAMP_INPUT_FORMATS);
 	}
 }

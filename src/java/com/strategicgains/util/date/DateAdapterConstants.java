@@ -27,7 +27,7 @@ import java.util.TimeZone;
  */
 public final class DateAdapterConstants
 {
-	// All dates and times marsaled within Dynamic-DTO are converted to UTC.
+	// All dates and times marshaled within Dynamic-DTO are converted to UTC.
 	public static final TimeZone UNIVERSAL_TIME_ZONE = TimeZone.getTimeZone("UTC");
 
 
@@ -36,10 +36,10 @@ public final class DateAdapterConstants
 	public static final String DATE_OUTPUT_FORMAT = "yyyy-MM-dd";
 	public static final String[] DATE_INPUT_FORMATS =
 	{
+		"yyyy-MM-dd'T'HH:mm:ssz",
 		DATE_OUTPUT_FORMAT,
 		"yyyy/MM/dd",
-		"MM/dd/yyyy",
-		"yyyy-MM-dd'T'HH:mm:ssz"
+		"MM/dd/yyyy"
 	};
 
 	

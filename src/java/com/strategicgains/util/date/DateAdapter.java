@@ -47,12 +47,12 @@ implements TextAdapter<Date>
 
 	public DateAdapter()
 	{
-		this(DATE_INPUT_FORMATS, DATE_OUTPUT_FORMAT);
+		this(DATE_OUTPUT_FORMAT, DATE_INPUT_FORMATS);
 	}
 	
-	protected DateAdapter(String[] inputFormats, String outputFormat)
+	protected DateAdapter(String outputFormat, String... inputFormats)
 	{
-		this.processor = new DateFormatProcessor(inputFormats, outputFormat);
+		this.processor = new DateFormatProcessor(outputFormat, inputFormats);
 	}
 
 	

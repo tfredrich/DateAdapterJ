@@ -42,9 +42,9 @@ implements TextAdapter<Date>
 	private DateFormat[] inputFormats;
 	private DateFormat outputFormat;
 	
-	public DateFormatProcessor(List<String> inputFormats, String outputFormat)
+	public DateFormatProcessor(String outputFormat, List<String> inputFormats)
 	{
-		this(inputFormats.toArray(new String[0]), outputFormat);
+		this(outputFormat, inputFormats.toArray(new String[0]));
 	}
 
 	/**
@@ -54,18 +54,18 @@ implements TextAdapter<Date>
 	 * well to keep everything internal to the service as UTC, but clients will have to convert to
 	 * the local timezone before presentation to the user, if necessary.
 	 *
-	 * @param inputFormatStrings Array of SimpleDateFormat strings representing date formats accepted as input.
+	 * @param inputFormats Array of SimpleDateFormat strings representing date formats accepted as input.
 	 * @param outputFormat SimpleDateFormat string representing the output date format.
 	 */
-	public DateFormatProcessor(String[] inputFormatStrings, String outputFormat)
+	public DateFormatProcessor(String outputFormat, String... inputFormats)
 	{
 		this.outputFormat = new SimpleDateFormat(outputFormat);
 		this.outputFormat.setTimeZone(UNIVERSAL_TIME_ZONE);
-		this.inputFormats = new SimpleDateFormat[inputFormatStrings.length];
+		this.inputFormats = new SimpleDateFormat[inputFormats.length];
 		
 		for (int i = 0; i < this.inputFormats.length; ++i)
 		{
-			this.inputFormats[i] = new SimpleDateFormat(inputFormatStrings[i]);
+			this.inputFormats[i] = new SimpleDateFormat(inputFormats[i]);
 			this.inputFormats[i].setTimeZone(UNIVERSAL_TIME_ZONE);
 		}
 	}
@@ -77,7 +77,7 @@ implements TextAdapter<Date>
 	 * @param inputFormats Array of DateFormat instances for accepting input dates.
 	 * @param outputFormat DateFormat for date output.
 	 */
-	public DateFormatProcessor(DateFormat[] inputFormats, DateFormat outputFormat)
+	public DateFormatProcessor(DateFormat outputFormat, DateFormat... inputFormats)
 	{
 		this.outputFormat = (DateFormat) outputFormat.clone();
 		this.inputFormats = new DateFormat[inputFormats.length];
