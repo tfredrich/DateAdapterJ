@@ -23,6 +23,11 @@ import java.util.regex.Pattern;
 import com.strategicgains.util.AdapterCallback;
 
 /**
+ * Utilizes regular expressions to augment the Java SimpleDateFormat handling for ISO 8601.  Called by
+ * Iso8601TimestampAdapter before parsing the date string, this callback checks to see if the timezone
+ * offset is abbreviated (e.g. of the form "+/-HH") or contains a colon (e.g. +/-HH:MM).  If so, 
+ * string substitution is performed and the augmented string returned to the parser.
+ * 
  * @author Todd Fredrich
  * @since April 7, 2010
  */
@@ -38,18 +43,15 @@ implements AdapterCallback<String>
 	@Override
 	public String process(String string)
 	{
-		if (SHORT_TZ_PATTERN.matcher(string).matches())
+		Matcher colonMatcher = COLON_TZ_PATTERN.matcher(string);
+
+		if (colonMatcher.matches())
+		{
+			return string.replaceAll(COLON_DELIM_TZ_REGEX, colonMatcher.group(1) + colonMatcher.group(2));
+		}
+		else if (SHORT_TZ_PATTERN.matcher(string).matches())
 		{
 			return string + "00";
-		}
-		else
-		{
-			Matcher colonMatcher = COLON_TZ_PATTERN.matcher(string);
-
-			if (colonMatcher.matches())
-			{
-				return string.replaceAll(COLON_DELIM_TZ_REGEX, colonMatcher.group(1) + colonMatcher.group(2));
-			}
 		}
 
 		return string;

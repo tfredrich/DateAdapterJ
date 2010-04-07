@@ -24,14 +24,17 @@ There are no time zone designators utilized in the standard.  Instead there is o
 
 Thus, 10:30:45Z is the same time as 03:30:45-07:00.  DateAdapterJ does not currently parse times independent of a date.  ISO 8601 refers to dates combined with times as time points.  Currently supported ISO 8601 time point formats are:
 
-1) YYYY-MM-DDTHH:MM:SSZ
-2) YYYY-MM-DDTHH:MM:SS+HH:MM
-3) YYYY-MM-DDTHH:MM:SS+HHMM
-4) YYYY-MM-DDTHH:MM:SS+HH
-5) YYYY-MM-DDTHH:MMZ
-6) YYYY-MM-DDTHH:MM+HH:MM
-7) YYYY-MM-DDTHH:MM+HHMM
-8) YYYY-MM-DDTHH:MM+HH
+1)  YYYY-MM-DDTHH:MM:SSZ
+2)  YYYY-MM-DDTHH:MM:SS+HH:MM
+3)  YYYY-MM-DDTHH:MM:SS+HHMM
+4)  YYYY-MM-DDTHH:MM:SS+HH
+5)  YYYY-MM-DDTHH:MMZ
+6)  YYYY-MM-DDTHH:MM+HH:MM
+7)  YYYY-MM-DDTHH:MM+HHMM
+8)  YYYY-MM-DDTHH:MM+HH
+9)  YYYY-MM-DDTHHMM+HH:MM
+10) YYYY-MM-DDTHHMM+HHMM
+11) YYYY-MM-DDTHHMM+HH
 
 Additional time stamp formats are also parsed, where 'sss' represents milliseconds:
 1) YYYY-MM-DDTHH:MM:SS.sssZ

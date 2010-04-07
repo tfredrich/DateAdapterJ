@@ -46,7 +46,7 @@ public class TimestampAdapterTest
 	}
 	
 	@Test
-	public void shouldOutput_yyyyMMddTHHmmssSSSZ()
+	public void shouldOutput_yyyy_MM_ddTHH_mm_ss_SSSZ()
 	{
 		calendar.set(2010, Calendar.APRIL, 7, 13, 30, 37);
 		calendar.set(Calendar.MILLISECOND, 123);
@@ -122,6 +122,40 @@ public class TimestampAdapterTest
 	}
 
 	@Test
+	public void shouldParse_yyyy_MM_ddTHHmmssZ()
+	throws ParseException
+	{
+		Date date = adapter.parse("2010-04-07T115213Z");
+		assertNotNull(date);
+
+		calendar.setTime(date);
+		assertEquals(2010, calendar.get(Calendar.YEAR));
+		assertEquals(Calendar.APRIL, calendar.get(Calendar.MONTH));
+		assertEquals(7, calendar.get(Calendar.DAY_OF_MONTH));
+		assertEquals(11, calendar.get(Calendar.HOUR_OF_DAY));
+		assertEquals(52, calendar.get(Calendar.MINUTE));
+		assertEquals(13, calendar.get(Calendar.SECOND));
+		assertEquals(0, calendar.get(Calendar.MILLISECOND));
+	}
+
+	@Test
+	public void shouldParse_yyyy_MM_ddTHHmmss_0700()
+	throws ParseException
+	{
+		Date date = adapter.parse("2010-04-07T115213-0700");
+		assertNotNull(date);
+
+		calendar.setTime(date);
+		assertEquals(2010, calendar.get(Calendar.YEAR));
+		assertEquals(Calendar.APRIL, calendar.get(Calendar.MONTH));
+		assertEquals(7, calendar.get(Calendar.DAY_OF_MONTH));
+		assertEquals(18, calendar.get(Calendar.HOUR_OF_DAY));
+		assertEquals(52, calendar.get(Calendar.MINUTE));
+		assertEquals(13, calendar.get(Calendar.SECOND));
+		assertEquals(0, calendar.get(Calendar.MILLISECOND));
+	}
+
+	@Test
 	public void shouldParse_yyyy_MM_ddTHH_mmZ()
 	throws ParseException
 	{
@@ -139,10 +173,44 @@ public class TimestampAdapterTest
 	}
 
 	@Test
+	public void shouldParse_yyyy_MM_ddTHHmmZ()
+	throws ParseException
+	{
+		Date date = adapter.parse("2010-04-07T1152Z");
+		assertNotNull(date);
+
+		calendar.setTime(date);
+		assertEquals(2010, calendar.get(Calendar.YEAR));
+		assertEquals(Calendar.APRIL, calendar.get(Calendar.MONTH));
+		assertEquals(7, calendar.get(Calendar.DAY_OF_MONTH));
+		assertEquals(11, calendar.get(Calendar.HOUR_OF_DAY));
+		assertEquals(52, calendar.get(Calendar.MINUTE));
+		assertEquals(0, calendar.get(Calendar.SECOND));
+		assertEquals(0, calendar.get(Calendar.MILLISECOND));
+	}
+
+	@Test
 	public void shouldParse_yyyy_MM_ddTHH_mm_0700()
 	throws ParseException
 	{
 		Date date = adapter.parse("2010-04-07T11:52-0700");
+		assertNotNull(date);
+
+		calendar.setTime(date);
+		assertEquals(2010, calendar.get(Calendar.YEAR));
+		assertEquals(Calendar.APRIL, calendar.get(Calendar.MONTH));
+		assertEquals(7, calendar.get(Calendar.DAY_OF_MONTH));
+		assertEquals(18, calendar.get(Calendar.HOUR_OF_DAY));
+		assertEquals(52, calendar.get(Calendar.MINUTE));
+		assertEquals(0, calendar.get(Calendar.SECOND));
+		assertEquals(0, calendar.get(Calendar.MILLISECOND));
+	}
+
+	@Test
+	public void shouldParse_yyyy_MM_ddTHHmm_0700()
+	throws ParseException
+	{
+		Date date = adapter.parse("2010-04-07T1152-0700");
 		assertNotNull(date);
 
 		calendar.setTime(date);

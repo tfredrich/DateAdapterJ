@@ -55,8 +55,14 @@ public final class DateAdapterConstants
 		TIME_POINT_OUTPUT_FORMAT,
 		"yyyy-MM-dd'T'HH:mm:ssZ",
 
+		"yyyy-MM-dd'T'HHmmss'Z'",
+		"yyyy-MM-dd'T'HHmmssZ",
+
 		"yyyy-MM-dd'T'HH:mm'Z'",
 		"yyyy-MM-dd'T'HH:mmZ",
+
+		"yyyy-MM-dd'T'HHmm'Z'",
+		"yyyy-MM-dd'T'HHmmZ"
 	};
 
 	
