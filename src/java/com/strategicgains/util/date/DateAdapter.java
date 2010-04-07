@@ -23,6 +23,7 @@ import static com.strategicgains.util.date.DateAdapterConstants.DATE_OUTPUT_FORM
 import java.text.ParseException;
 import java.util.Date;
 
+import com.strategicgains.util.AdapterCallback;
 import com.strategicgains.util.TextAdapter;
 
 
@@ -41,6 +42,10 @@ implements TextAdapter<Date>
 	// SECTION: INSTANCE VARIABLES
 
 	private DateFormatProcessor processor;
+	private AdapterCallback<String> preParseCallback = null;
+	private AdapterCallback<Date> postParseCallback = null;
+	private AdapterCallback<Date> preFormatCallback = null;
+	private AdapterCallback<String> postFormatCallback = null;
 
 	
 	// SECTION: CONSTRUCTOR
@@ -56,8 +61,30 @@ implements TextAdapter<Date>
 	}
 
 	
-	// SECTION: FORMATTING
+	// SECTION: CALLBACK ACCESSING/MUTATING
+
+	public void setPreParseCallback(AdapterCallback<String> preParseCallback)
+	{
+		this.preParseCallback = preParseCallback;
+	}
+
+	public void setPostParseCallback(AdapterCallback<Date> postParseCallback)
+	{
+		this.postParseCallback = postParseCallback;
+	}
+
+	public void setPreFormatCallback(AdapterCallback<Date> preFormatCallback)
+	{
+		this.preFormatCallback = preFormatCallback;
+	}
+
 	
+	// SECTION: FORMATTING
+
+	public void setPostFormatCallback(AdapterCallback<String> postFormatCallback) {
+		this.postFormatCallback = postFormatCallback;
+	}
+
 	@Override
 	public Date parse(String dateString)
 	throws ParseException
@@ -80,12 +107,22 @@ implements TextAdapter<Date>
 	
 	protected String beforeParse(String string)
 	{
-		return string;
+		if (preParseCallback == null)
+		{
+			return string;
+		}
+		
+		return preParseCallback.process(string);
 	}
 	
 	protected Date beforeFormat(Date date)
 	{
-		return date;
+		if (preFormatCallback == null)
+		{
+			return date;
+		}
+		
+		return preFormatCallback.process(date);
 	}
 	
 	
@@ -93,11 +130,21 @@ implements TextAdapter<Date>
 	
 	protected Date afterParse(Date date)
 	{
-		return date;
+		if (postParseCallback == null)
+		{
+			return date;
+		}
+		
+		return postParseCallback.process(date);
 	}
 	
 	protected String afterFormat(String string)
 	{
-		return string;
+		if (postFormatCallback == null)
+		{
+			return string;
+		}
+		
+		return postFormatCallback.process(string);
 	}
 }

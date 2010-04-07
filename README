@@ -40,7 +40,7 @@ Additional time stamp formats are also parsed, where 'sss' represents millisecon
 4) YYYY-MM-DDTHH:MM:SS.sss+HH
 
 The default time point output format is:
-YYYY-MM-DDTHH:MM:SSZ
+YYYY-MM-DDTHH:MM:SSZ (not presently used, must be configured)
 
 The default time stamp output format is:
 YYYY-MM-DDTHH:MM:SS.sssZ

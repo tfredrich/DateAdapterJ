@@ -15,23 +15,13 @@
  * limitations under the License.
  */
 
-package com.strategicgains.util.date;
-
-import static com.strategicgains.util.date.DateAdapterConstants.TIMESTAMP_INPUT_FORMATS;
-import static com.strategicgains.util.date.DateAdapterConstants.TIMESTAMP_OUTPUT_FORMAT;
+package com.strategicgains.util;
 
 /**
- * Utilizes the {@link Iso8601TimestampCallback} to implement ISO 8601 time point parsing and formatting.
- * 
- * @author toddf
- * @since Nov 13, 2009
+ * @author Todd Fredrich
+ * @since April 7, 2010
  */
-public class TimestampAdapter
-extends DateAdapter
+public interface AdapterCallback<T>
 {
-	public TimestampAdapter()
-	{
-		super(TIMESTAMP_OUTPUT_FORMAT, TIMESTAMP_INPUT_FORMATS);
-		setPreParseCallback(new Iso8601TimestampCallback());
-	}
+	public T process(T object);
 }
