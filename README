@@ -1,4 +1,4 @@
-DateAdapterJ is a small java library to support the conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.  This facilitates JSON and XML date and timestamp conversion, as well as, common web UI parameter processing.
+DateAdapterJ is a small java library to support the conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.  This facilitates JSON and XML date and timestamp conversion, as well as, common web UI parameter processing.   The goal is to easily support ISO 8601 date and time formats right out of the box.
 
 Default output formats are:
 1) for Date: yyyy-MM-dd (e.g. 2010-04-07)
@@ -6,16 +6,21 @@ Default output formats are:
 
 Note: All dates (and times) are converted to UTC internally.  So output is always UTC adjusted.
 
-Default accepted input formats for dates are (and are attempted in this order):
-1) yyyy-MM-dd
-2) yyyy/MM/dd
-3) MM/dd/yyyy
-4) yyyy-MM-dd'T'HH:mm:ssz
+Default accepted input formats for dates are (and are attempted in this order).:
+1) yyyy-MM-dd'T'HH:mm:ss.SSSz
+2) yyyy-MM-dd'T'HH:mm:ss.SSSZ
+3) yyyy-MM-dd'T'HH:mm:ssz
+4) yyyy-MM-dd'T'HH:mm:ssZ
+5) yyyy-MM-dd
+6) MM/dd/yyyy
 
 Default accepted input formats for timestamps are (and are attempted in this order):
 1) yyyy-MM-dd'T'HH:mm:ss.SSSz
-2) yyyy-MM-dd'T'HH:mm:ssz
-3) yyyy-MM-dd'T'HH:mmz
-4) yyyy-MM-dd
+2) yyyy-MM-dd'T'HH:mm:ss.SSSZ
+3) yyyy-MM-dd'T'HH:mm:ssz
+4) yyyy-MM-dd'T'HH:mm:ssZ
+5) yyyy-MM-dd'T'HH:mmz
+6) yyyy-MM-dd'T'HH:mmZ
+7) yyyy-MM-dd
 
 These can easily be configured for your various input/output processing needs.
