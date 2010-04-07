@@ -32,8 +32,7 @@ import org.junit.Test;
 
 public class DateFormatProcessorTest
 {
-	private DateFormatProcessor dfp = new DateFormatProcessor("yyyy-MM-dd'T'HH:mm:ssz",
-		"yyyy-MM-dd'T'HH:mm:ssz",
+	private DateFormatProcessor dfp = new DateFormatProcessor("yyyy-MM-dd'T'HH:mm:ss'Z'",
 		"yyyy-MM-dd'T'HH:mm:ssZ",
 		"yyyy-MM-dd",
 		"MM/dd/yyyy");
@@ -52,7 +51,7 @@ public class DateFormatProcessorTest
 		Calendar c = Calendar.getInstance(tz);
 		c.clear(); // reset milliseconds
 		c.set(2010, Calendar.APRIL, 7, 11, 52, 17); // 2010-04-07T11:52:17 -07:00
-		assertEquals("2010-04-07T18:52:17UTC", dfp.format(c.getTime()));
+		assertEquals("2010-04-07T18:52:17Z", dfp.format(c.getTime()));
 	}
 
 	@Test

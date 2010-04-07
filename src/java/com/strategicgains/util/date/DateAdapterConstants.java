@@ -36,27 +36,30 @@ public final class DateAdapterConstants
 	public static final String DATE_OUTPUT_FORMAT = "yyyy-MM-dd";
 	public static final String[] DATE_INPUT_FORMATS =
 	{
-		"yyyy-MM-dd'T'HH:mm:ss.SSSz",
-		"yyyy-MM-dd'T'HH:mm:ss.SSSZ",
-		"yyyy-MM-dd'T'HH:mm:ssz",
-		"yyyy-MM-dd'T'HH:mm:ssZ",
 		DATE_OUTPUT_FORMAT,
-		"MM/dd/yyyy"
+		"yyyyMMdd",
+		"MM/dd/yyyy",
+		"yyMMdd"
 	};
 
 	
-	// SECTION: Timestamp-related constants.
+	// SECTION: Time stamp-related constants.
 	
-	public static final String TIMESTAMP_OUTPUT_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSz";
+	public static final String TIME_POINT_OUTPUT_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+	public static final String TIMESTAMP_OUTPUT_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 	public static final String[] TIMESTAMP_INPUT_FORMATS =
 	{
 		TIMESTAMP_OUTPUT_FORMAT,
+		"yyyy-MM-dd'T'HH:mm:ss.SSSZZ:ZZ",
 		"yyyy-MM-dd'T'HH:mm:ss.SSSZ",
-		"yyyy-MM-dd'T'HH:mm:ssz",
+
+		TIME_POINT_OUTPUT_FORMAT,
+		"yyyy-MM-dd'T'HH:mm:ssZZ:ZZ",
 		"yyyy-MM-dd'T'HH:mm:ssZ",
-		"yyyy-MM-dd'T'HH:mmz",
+
+		"yyyy-MM-dd'T'HH:mm'Z'",
+		"yyyy-MM-dd'T'HH:mmZZ:ZZ",
 		"yyyy-MM-dd'T'HH:mmZ",
-		"yyyy-MM-dd"
 	};
 
 	
