@@ -1,96 +1,122 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="DateAdapterJ">
-    <property environment="env"/>
-    <property name="Dynamic-DTO.location" value="../Dynamic-DTO"/>
-    <property name="junit.output.dir" value="junit"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.6"/>
-    <property name="source" value="1.6"/>
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="${basedir}/JUnit 4/junit.jar"/>
-        <pathelement location="${basedir}/JUnit 4/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+<project basedir="." default="build-all" name="DateAdapterJ">
+
+	<property environment="env"/>
+	<property file="build.properties"/>
+	<property name="dir.src.java" value="${basedir}/src/java"/>
+	<property name="dir.src.test" value="${basedir}/test/java"/>
+	<property name="dir.build" value="${basedir}/build"/>
+	<property name="dir.compile" value="${dir.build}/classes/main"/>
+	<property name="dir.compile.test" value="${dir.build}/classes/test"/>
+	<property name="dir.lib" value="${basedir}/lib"/>
+	<property name="dir.dist" value="${basedir}/dist"/>
+	<property name="dir.test.results" value="${dir.build}/junit"/>
+	<property name="dir.test.report" value="${dir.test.results}/report"/>
+
+	<path id="compile.classpath">
+		<pathelement location="${dir.compile}"/>
+		<fileset dir="${dir.lib}">
+			<include name="**/*.jar"/>
+		</fileset>
     </path>
-    <path id="DateAdapterJ.classpath">
-        <pathelement location="build"/>
-        <path refid="JUnit 4.libraryclasspath"/>
+
+	<path id="runtime.classpath">
+		<pathelement location="${dir.compile}"/>
+		<fileset dir="${dir.lib}">
+			<include name="**/*.jar"/>
+			<exclude name="**/sources/*"/>
+		</fileset>
     </path>
-    <target name="init">
-        <mkdir dir="build"/>
-        <copy includeemptydirs="false" todir="build">
-            <fileset dir="src/java">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-        <copy includeemptydirs="false" todir="build">
-            <fileset dir="test/java">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
+
+	<path id="unit_test.classpath">
+		<path refid="runtime.classpath"/>
+		<pathelement location="${dir.compile.test}"/>
+    </path>
+
+    <target name="_init">
+		<mkdir dir="${dir.compile}"/>
+		<mkdir dir="${dir.compile.test}"/>
+		<mkdir dir="${dir.dist}"/>
     </target>
-    <target name="clean">
-        <delete dir="build"/>
+
+	<target name="clean">
+		<delete dir="${dir.build}"/>
+		<delete dir="${dir.dist}"/>
     </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-project" name="build"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="build" source="${source}" target="${target}">
-            <src path="src/java"/>
-            <classpath refid="DateAdapterJ.classpath"/>
-        </javac>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="build" source="${source}" target="${target}">
-            <src path="test/java"/>
-            <classpath refid="DateAdapterJ.classpath"/>
-        </javac>
+
+	<!-- ====================================================================== 
+          target: compile
+         ====================================================================== -->
+    <target name="compile"  depends="_init">
+		<javac destdir="${dir.compile}"
+			failonerror="yes"
+			fork="yes"
+    		source="${javac.source}"
+    		debug="${javac.debug}">
+			<classpath>
+				<path refid="compile.classpath"/>
+			</classpath>
+			<src>
+				<pathelement location="${dir.src.java}"/>
+			</src>
+		</javac>
+		<javac destdir="${dir.compile.test}"
+			failonerror="yes"
+			fork="yes"
+    		source="${javac.source}"
+    		debug="${javac.debug}">
+			<classpath>
+				<path refid="compile.classpath"/>
+			</classpath>
+			<src>
+				<pathelement location="${dir.src.test}"/>
+			</src>
+		</javac>
     </target>
-    <target name="DateFormatProcessorTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="com.strategicgains.util.date.DateFormatProcessorTest" todir="${junit.output.dir}"/>
-            <classpath refid="DateAdapterJ.classpath"/>
-        </junit>
+	
+	<!-- ====================================================================== 
+          target: build
+         ====================================================================== -->
+	<target name="build" depends="compile, unit-test"/>
+
+	<!-- ====================================================================== 
+          target: build-all
+         ====================================================================== -->
+	<target name="build-all" depends="clean, compile, unit-test"/>
+
+	<!-- ====================================================================== 
+          target: unit-test
+         ====================================================================== -->
+    <target name="unit-test" depends="_init, compile" description="--> Execute JBEL unit tests">
+        <delete dir="${dir.test.results}"/>
+    	<mkdir dir="${dir.test.results}"/>
+    	<junit printsummary="true">
+    		<classpath refid="unit_test.classpath"/>
+    		<formatter type="xml" usefile="true"/>
+    		<batchtest errorproperty="test.failure" failureproperty="test.failure" fork="yes" todir="${dir.test.results}">
+    			<fileset dir="${dir.src.test}">
+    				<include name="**/*Test.java"/>
+    				<include name="**/*TestCase.java"/>
+    			</fileset>
+    		</batchtest>
+    	</junit>
+    	
+    	<mkdir dir="${dir.test.report}"/>
+    	<junitreport todir="${dir.test.report}">
+    		<report format="frames" todir="${dir.test.report}"/>
+    		<fileset dir="${dir.test.results}"/>
+    	</junitreport>
+    	
+    	<fail if="test.failure" message="Unit-Tests failed."/>
     </target>
-    <target name="DateAdapterTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="com.strategicgains.util.date.DateAdapterTest" todir="${junit.output.dir}"/>
-            <classpath refid="DateAdapterJ.classpath"/>
-        </junit>
+
+	<!-- ====================================================================== 
+          target: release
+         ====================================================================== -->
+    <target name="release" depends="_init, compile" description="Release a distro">
+		<jar destfile="${dir.dist}/${ant.project.name}-${version}.jar">
+    		<fileset dir="${dir.compile}"/>
+    	</jar>
     </target>
-    <target name="TimestampAdapterTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="com.strategicgains.util.date.TimestampAdapterTest" todir="${junit.output.dir}"/>
-            <classpath refid="DateAdapterJ.classpath"/>
-        </junit>
-    </target>
-    <target name="DateAdapterJ">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="com.strategicgains.util.date.DateAdapterTest" todir="${junit.output.dir}"/>
-            <test name="com.strategicgains.util.date.DateFormatProcessorTest" todir="${junit.output.dir}"/>
-            <test name="com.strategicgains.util.date.Iso8601TimestampAdapterTest" todir="${junit.output.dir}"/>
-            <test name="com.strategicgains.util.date.TimestampAdapterTest" todir="${junit.output.dir}"/>
-            <classpath refid="DateAdapterJ.classpath"/>
-        </junit>
-    </target>
-    <target name="junitreport">
-        <junitreport todir="${junit.output.dir}">
-            <fileset dir="${junit.output.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="${junit.output.dir}"/>
-        </junitreport>
-    </target>
+
 </project>
