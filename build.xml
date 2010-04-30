@@ -117,6 +117,9 @@
 		<jar destfile="${dir.dist}/${ant.project.name}-${version}.jar">
     		<fileset dir="${dir.compile}"/>
     	</jar>
+		<jar destfile="${dir.dist}/${ant.project.name}-${version}-src.jar">
+    		<fileset dir="${dir.src.java}"/>
+    	</jar>
     </target>
 
 </project>
