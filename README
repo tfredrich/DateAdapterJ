@@ -1,8 +1,12 @@
 DateAdapterJ is a small java library to support the conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.  This facilitates JSON and XML date and timestamp conversion, as well as, common web UI parameter processing.   The goal is to easily support ISO 8601 calendar date and time point formats, as well as, common UI representations right out of the box.
 
-ISO 8601 Formats are not necessarily easily supported via Java's SimpleDateFormat.  Therefore, not all date and time formats are supported by DateAdapterJ.  Only ISO 8601 'Calendar Date' formats are supported.  Other date formats (e.g. ) are not.
+ISO8601 format, or more commonly known as "ISO format," facilitate cross-platform date formats.  The ISO 8601 standard, however, describes both date formats and time formats, as well as both combined, which it refers to as time point formats.  Please refer to the standard here: 
 
-DateAdapterJ parses the following ISO 8601 Calendar Date formats:
+ISO 8601 Format is not necessarily easily supported via Java's SimpleDateFormat.  Therefore, not all date and time formats are supported by DateAdapterJ.  Only ISO 8601 'Calendar Date' and 'Time Point' formats are supported.  Other formats (e.g. time formats independent of date) are not.
+
+RFC 1123, RFC 1036, and RFC 850 are also supported for full dates in the HTTP specification.  This is useful for parsing and setting full dates in HTTP 1.0 and HTTP 1.1 headers (see HttpHeaderTimestampAdapter).
+
+DateAdapterJ parses the following ISO 8601 Calendar Date formats (via DateAdapter):
 1) YYYY-MM-DD
 2) YYYYMMDD
 
@@ -22,7 +26,7 @@ There are no time zone designators utilized in the standard.  Instead there is o
 2) +/-HHMM
 3) +/-HH
 
-Thus, 10:30:45Z is the same time as 03:30:45-07:00.  DateAdapterJ does not currently parse times independent of a date.  ISO 8601 refers to dates combined with times as time points.  Currently supported ISO 8601 time point formats are:
+Thus, 10:30:45Z is the same time as 03:30:45-07:00.  DateAdapterJ does not currently parse times independent of a date.  ISO 8601 refers to dates combined with times as time points.  Currently supported ISO 8601 time point formats are (via Iso8601TimepointAdapter):
 
 1)  YYYY-MM-DDTHH:MM:SSZ
 2)  YYYY-MM-DDTHH:MM:SS+HH:MM
@@ -45,9 +49,34 @@ Additional time stamp formats are also parsed, where 'sss' represents millisecon
 The default time point output format is:
 YYYY-MM-DDTHH:MM:SSZ (not presently used, must be configured)
 
+new TimestampAdapter() will currently output timestamps in the format below by default.  If you want to use the ISO 8601 time point format, use new Iso8601TimepointAdapter()
+
 The default time stamp output format is:
 YYYY-MM-DDTHH:MM:SS.sssZ
 
 Supported date and time point formats can easily be configured for your various input/output processing needs.
 
+RFC 1123, RFC 1036, RFC 850--Full dates in HTTP headers.  HttpHeaderTimestampAdapter() supports the following formats for input (e.g. as incoming HTTP headers):
+1) EEE, dd MMM yyyy HH:mm:ss z	//e.g. Sun, 06 Nov 1994 08:49:37 GMT ; RFC 822, updated by RFC 1123
+2) EEEE, dd-MMM-yy HH:mm:ss z	//e.g. Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
+3) EEE MMM d HH:mm:ss yyyy		//e.g. Sun Nov  6 08:49:37 1994 ; ANSI C's asctime() format
+4) YYYY-MM-DDTHH:MM:SS.sssZ		// Default time stamp output format from TimestampAdapter.
+5) YYYY-MM-DD					// Default date output format from DateAdapter.
+
+To support RFC1123, the default output format of HttpHeaderTimestampAdapter is:
+EEE, dd MMM yyyy HH:mm:ss GMT 
+
 Note: All dates (and times) are converted to UTC internally.  So output is always UTC adjusted.
+
+Change History/Release Notes:
+===================================================================================================
+Release 1.1.0 - in development
+* Introduced HttpHeaderTimestampAdapter to support RFC1123, RFC1036 and RFC850 for full dates in
+  HTTP headers.  See HTTP 1.1 specification at http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html
+  section 3.3.1 -- Full Date.
+* Renamed Iso8601TimestampAdapter to Iso8601TimepointAdapter.
+
+===================================================================================================
+Release 1.0.0
+* Initial release
+
