@@ -31,7 +31,7 @@ import com.strategicgains.util.AdapterCallback;
  * @author Todd Fredrich
  * @since April 7, 2010
  */
-public class Iso8601TimestampCallback
+public class Iso8601TimepointCallback
 implements AdapterCallback<String>
 {
 	private static final String SHORT_TZ_REGEX = ".*T.*[-+]\\d\\d$";

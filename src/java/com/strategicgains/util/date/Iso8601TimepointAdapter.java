@@ -19,17 +19,17 @@ package com.strategicgains.util.date;
 
 
 /**
- * Utilizes the {@link Iso8601TimestampCallback} to implement ISO 8601 time point parsing and formatting.
+ * Utilizes the {@link Iso8601TimepointCallback} to implement ISO 8601 time point parsing and formatting.
  * 
  * @author toddf
  * @since Nov 13, 2009
  */
-public class Iso8601TimestampAdapter
+public class Iso8601TimepointAdapter
 extends TimestampAdapter
 {
-	public Iso8601TimestampAdapter()
+	public Iso8601TimepointAdapter()
 	{
 		super();
-		setPreParseCallback(new Iso8601TimestampCallback());
+		setPreParseCallback(new Iso8601TimepointCallback());
 	}
 }

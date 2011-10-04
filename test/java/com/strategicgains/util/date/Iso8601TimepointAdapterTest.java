@@ -34,9 +34,9 @@ import org.junit.Test;
  * @author toddf
  * @since April 7, 2010
  */
-public class Iso8601TimestampAdapterTest
+public class Iso8601TimepointAdapterTest
 {
-	private DateAdapter adapter = new Iso8601TimestampAdapter();
+	private DateAdapter adapter = new Iso8601TimepointAdapter();
 	private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 	
 	@Before
