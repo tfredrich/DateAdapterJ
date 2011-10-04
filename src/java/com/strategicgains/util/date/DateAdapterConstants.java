@@ -64,6 +64,19 @@ public final class DateAdapterConstants
 		"yyyy-MM-dd'T'HHmm'Z'",
 		"yyyy-MM-dd'T'HHmmZ"
 	};
+	
+	
+	// SECTION: RFC 1123 related constants (used for dates/timestamps in HTTP headers)
+	
+	public static final String RFC1123_OUTPUT_FORMAT = "EEE, dd MMM yyyy HH:mm:ss 'GMT'";  //e.g. Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123
+	public static final String[] RFC1123_INPUT_FORMATS =
+	{
+		"EEE, dd MMM yyyy HH:mm:ss z",	//e.g. Sun, 06 Nov 1994 08:49:37 GMT ; RFC 822, updated by RFC 1123
+		"EEEE, dd-MMM-yy HH:mm:ss z",	//e.g. Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
+		"EEE MMM d HH:mm:ss yyyy",		//e.g. Sun Nov  6 08:49:37 1994 ; ANSI C's asctime() format
+		TIMESTAMP_OUTPUT_FORMAT,		// Default time stamp format from TimestampAdapter.
+		DATE_OUTPUT_FORMAT				// Default date format from DateAdapter.
+	};
 
 	
 	// SECTION: CONSTRUTOR - PRIVATE
