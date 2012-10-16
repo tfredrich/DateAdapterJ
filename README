@@ -70,7 +70,7 @@ Note: All dates (and times) are converted to UTC internally.  So output is alway
 
 Change History/Release Notes:
 ===================================================================================================
-Release 1.1.0 - 18 Oct 2012
+Release 1.1.0 - 16 Oct 2012
 * Introduced HttpHeaderTimestampAdapter to support RFC1123, RFC1036 and RFC850 for full dates in
   HTTP headers.  See HTTP 1.1 specification at http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html
   section 3.3.1 -- Full Date.
