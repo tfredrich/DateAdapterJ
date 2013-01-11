@@ -1,3 +1,15 @@
+Maven Usage:
+========================================================================================================================
+<dependency>
+	<groupId>com.strategicgains</groupId>
+	<artifactId>DateAdapterJ</artifactId>
+	<version>1.1.0</version>
+	<type>jar</type>
+</dependency>
+
+Or download it directly from the Maven Central Repository:
+http://search.maven.org/#search%7Cga%7C1%7CDateAdapterJ
+
 DateAdapterJ is a small java library to support the conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.  This facilitates JSON and XML date and timestamp conversion, as well as, common web UI parameter processing.   The goal is to easily support ISO 8601 calendar date and time point formats, as well as, common UI representations right out of the box.
 
 ISO8601 format, or more commonly known as "ISO format," facilitate cross-platform date formats.  The ISO 8601 standard, however, describes both date formats and time formats, as well as both combined, which it refers to as time point formats.  Please refer to the standard here: 
