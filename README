@@ -1,3 +1,5 @@
+[![Build Status](https://buildhive.cloudbees.com/job/tfredrich/job/DateAdapterJ/badge/icon)](https://buildhive.cloudbees.com/job/tfredrich/job/DateAdapterJ/)
+
 DateAdapterJ is a small java library to support the conversion of java.util.Date instances to and from String instance in commonly-utilized, standard date (and timestamp) formats.  This facilitates JSON and XML date and timestamp conversion, as well as, common web UI parameter processing.   The goal is to easily support ISO 8601 calendar date and time point formats, as well as, common UI representations right out of the box.
 
 ISO8601 format, or more commonly known as "ISO format," facilitate cross-platform date formats.  The ISO 8601 standard, however, describes both date formats and time formats, as well as both combined, which it refers to as time point formats.  Please refer to the standard here: 
