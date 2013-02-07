@@ -25,11 +25,11 @@ package com.strategicgains.util.date;
  * @since Nov 13, 2009
  */
 public class Iso8601TimepointAdapter
-extends TimestampAdapter
+extends DateAdapter
 {
 	public Iso8601TimepointAdapter()
 	{
-		super();
+		super(DateAdapterConstants.TIME_POINT_OUTPUT_FORMAT, DateAdapterConstants.TIMESTAMP_INPUT_FORMATS);
 		setPreParseCallback(new Iso8601TimepointCallback());
 	}
 }
