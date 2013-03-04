@@ -50,7 +50,7 @@ public class Iso8601TimepointAdapterTest
 	{
 		calendar.set(2010, Calendar.APRIL, 7, 13, 30, 37);
 		calendar.set(Calendar.MILLISECOND, 123);
-		assertEquals("2010-04-07T13:30:37.123Z", adapter.format(calendar.getTime()));
+		assertEquals("2010-04-07T13:30:37Z", adapter.format(calendar.getTime()));
 	}
 
 	@Test
