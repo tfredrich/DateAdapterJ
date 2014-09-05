@@ -25,24 +25,29 @@ specification.  This is useful for parsing and setting full dates in HTTP 1.0 an
 1.1 headers (see HttpHeaderTimestampAdapter).
 
 DateAdapterJ parses the following ISO 8601 Calendar Date formats (via DateAdapter):
+
 1. YYYY-MM-DD
 2. YYYYMMDD
 
 In addition to the above date formats, DateAdapterJ supports the following date formats,
 which are common on UIs in the United States:
+
 4. MM/DD/YYYY
 5. YYMMDD
 
 The default date output format is:
+
 * YYYY-MM-DD
 
 For ISO 8601, times are of the form:
+
 1. HH:MM:SS
 2. HHMMSS
 
 There are no time zone designators utilized in the standard.  Instead there is only local
 time or UTC, with UTC being represented by a 'Z' at the end of the time point.  However,
 ISO 8601 makes use of time zone offsets which may be of the form:
+
 1. +/-HH:MM
 2. +/-HHMM
 3. +/-HH
@@ -64,6 +69,7 @@ Currently supported ISO 8601 time point formats are (via Iso8601TimepointAdapter
 11. YYYY-MM-DDTHHMM+HH
 
 Additional time stamp formats are also parsed, where 'sss' represents milliseconds:
+
 1. YYYY-MM-DDTHH:MM:SS.sssZ
 2. YYYY-MM-DDTHH:MM:SS.sss+HH:MM
 3. YYYY-MM-DDTHH:MM:SS.sss+HHMM
@@ -71,9 +77,11 @@ Additional time stamp formats are also parsed, where 'sss' represents millisecon
 
 The default time point output format for TimestampAdapter() (if you want to use the ISO
 8601 time point format, use new Iso8601TimepointAdapter) is:
+
 * YYYY-MM-DDTHH:MM:SS.sssZ
 
 The default time point output format for Iso8601TimepointAdapter is:
+
 * YYYY-MM-DDTHH:MM:SSZ
 
 Supported date and time point formats can easily be configured for your various
@@ -81,6 +89,7 @@ input/output processing needs.
 
 RFC 1123, RFC 1036, RFC 850--Full dates in HTTP headers.  HttpHeaderTimestampAdapter()
 supports the following formats for input (e.g. as incoming HTTP headers):
+
 1. EEE, dd MMM yyyy HH:mm:ss z	//e.g. Sun, 06 Nov 1994 08:49:37 GMT ; RFC 822, updated by RFC 1123
 2. EEEE, dd-MMM-yy HH:mm:ss z	//e.g. Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
 3. EEE MMM d HH:mm:ss yyyy		//e.g. Sun Nov  6 08:49:37 1994 ; ANSI C's asctime() format
@@ -88,6 +97,7 @@ supports the following formats for input (e.g. as incoming HTTP headers):
 5. YYYY-MM-DD					// Default date output format from DateAdapter.
 
 To support RFC1123, the default output format of HttpHeaderTimestampAdapter is:
+
 * EEE, dd MMM yyyy HH:mm:ss GMT 
 
 Note: All dates (and times) are converted to UTC internally.  So output is always UTC adjusted.
@@ -151,4 +161,3 @@ Release 1.1.0 - 16 Oct 2012
 ===================================================================================================
 Release 1.0.0
 * Initial release
-
