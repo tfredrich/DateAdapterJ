@@ -15,8 +15,9 @@ formats.  The ISO 8601 standard, however, describes both date formats and time f
 well as both combined, which it refers to as time point formats.  Please refer to the
 standard here: 
 
-ISO 8601 Format is not necessarily easily supported via Java's SimpleDateFormat.
-Therefore, not all date and time formats are supported by DateAdapterJ.  Only ISO 8601
+ISO 8601 Format is not necessarily easily supported via Java's SimpleDateFormat (prior to 
+Java 7).
+Not all ISO8601 date and time formats are supported by DateAdapterJ.  Only ISO 8601
 'Calendar Date' and 'Time Point' formats are supported.  Other formats (e.g. time formats
 independent of date) are not.
 
@@ -46,15 +47,16 @@ For ISO 8601, times are of the form:
 
 There are no time zone designators utilized in the standard.  Instead there is only local
 time or UTC, with UTC being represented by a 'Z' at the end of the time point.  However,
-ISO 8601 makes use of time zone offsets which may be of the form:
+ISO 8601 also makes use of time zone offsets which may be of the form:
 
 1. +/-HH:MM
 2. +/-HHMM
 3. +/-HH
 
-Thus, 10:30:45Z is the same time as 03:30:45-07:00.  DateAdapterJ does not currently parse
-times independent of a date.  ISO 8601 refers to dates combined with times as time points.
-Currently supported ISO 8601 time point formats are (via Iso8601TimepointAdapter):
+Thus, 10:30:45Z is the same time as 03:30:45-07:00 (Mountain time).  DateAdapterJ does
+not currently parse times independent of a date.  ISO 8601 refers to dates combined with
+times as time points. Currently supported ISO 8601 time point formats are
+(via Iso8601TimepointAdapter):
 
 1.  YYYY-MM-DDTHH:MM:SSZ
 2.  YYYY-MM-DDTHH:MM:SS+HH:MM
