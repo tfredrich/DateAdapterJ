@@ -71,6 +71,23 @@ public class Iso8601TimepointAdapterTest
 	}
 
 	@Test
+	public void shouldParse_yyyy_MM_ddTHH_mm_ss_1045()
+	throws ParseException
+	{
+		Date date = adapter.parse("2014-11-20T10:43:24+10:45");
+		assertNotNull(date);
+
+		calendar.setTime(date);
+		assertEquals(2014, calendar.get(Calendar.YEAR));
+		assertEquals(Calendar.NOVEMBER, calendar.get(Calendar.MONTH));
+		assertEquals(19, calendar.get(Calendar.DAY_OF_MONTH));
+		assertEquals(23, calendar.get(Calendar.HOUR_OF_DAY));
+		assertEquals(58, calendar.get(Calendar.MINUTE));
+		assertEquals(24, calendar.get(Calendar.SECOND));
+		assertEquals(0, calendar.get(Calendar.MILLISECOND));
+	}
+
+	@Test
 	public void shouldParse_yyyy_MM_ddTHH_mm_ss_SSS_0700()
 	throws ParseException
 	{
