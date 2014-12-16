@@ -144,22 +144,27 @@ Note that to use the SNAPSHOT version, you must enable snapshots and a repositor
 ```
 
 Change History/Release Notes:
-Release 1.1.2 - in branch 'master
-===================================================================================================
+
+Release 1.1.3-SNAPSHOT - in branch 'master'
+===================================================================================
+* Added unit test for parsing dates of format: "2014-11-20T10:43:24+10:45"
+
+Release 1.1.2 - 4 Mar 2013
+===================================================================================
 * Fixed issue with Iso8601TimepointAdapter not using timepoint output format.
 
-Release 1.1.1 - 4 Mar 2013
-===================================================================================================
+Release 1.1.1 - 16 Jan 2013
+===================================================================================
 * Introduced Maven build, removing Ant build artifacts.
 
-===================================================================================================
 Release 1.1.0 - 16 Oct 2012
+===================================================================================
 * Released to Maven Central repository (08 Jan 2013).
 * Introduced HttpHeaderTimestampAdapter to support RFC1123, RFC1036 and RFC850 for full dates in
   HTTP headers.  See HTTP 1.1 specification at http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html
   section 3.3.1 -- Full Date.
 * Renamed Iso8601TimestampAdapter to Iso8601TimepointAdapter.
 
-===================================================================================================
 Release 1.0.0
+===================================================================================
 * Initial release
