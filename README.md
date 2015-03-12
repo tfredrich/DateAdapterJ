@@ -111,7 +111,7 @@ Stable:
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>DateAdapterJ</artifactId>
-			<version>1.1.2</version>
+			<version>1.1.3</version>
 		</dependency>
 ```
 Development:
@@ -119,7 +119,7 @@ Development:
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>DateAdapterJ</artifactId>
-			<version>1.1.3-SNAPSHOT</version>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 ```
 Or download the jar directly from: 
@@ -145,7 +145,7 @@ Note that to use the SNAPSHOT version, you must enable snapshots and a repositor
 
 Change History/Release Notes:
 
-Release 1.1.3-SNAPSHOT - in branch 'master'
+Release 1.1.3 - 12 Mar 2015
 ===================================================================================
 * Added unit test for parsing dates of format: "2014-11-20T10:43:24+10:45"
 
