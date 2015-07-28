@@ -145,6 +145,10 @@ Note that to use the SNAPSHOT version, you must enable snapshots and a repositor
 
 Change History/Release Notes:
 
+Release 1.1.4-SNAPSHOT in branch 'master'
+========================================
+* Upgraded Java output to 1.7 source and target.
+
 Release 1.1.3 - 12 Mar 2015
 ===================================================================================
 * Added unit test for parsing dates of format: "2014-11-20T10:43:24+10:45"
