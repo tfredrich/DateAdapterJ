@@ -103,9 +103,6 @@
 		<url>https://github.com/tfredrich/DateAdapterJ/issues</url>
 	</issueManagement>
 
-	<distributionManagement>
-	</distributionManagement>
-
 	<scm>
 		<url>git@github.com:tfredrich/DateAdapterJ.git</url>
 		<connection>scm:git:git@github.com:tfredrich/DateAdapterJ.git</connection>
