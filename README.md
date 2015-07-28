@@ -111,7 +111,7 @@ Stable:
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>DateAdapterJ</artifactId>
-			<version>1.1.3</version>
+			<version>1.1.4</version>
 		</dependency>
 ```
 Development:
@@ -119,7 +119,7 @@ Development:
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>DateAdapterJ</artifactId>
-			<version>1.1.4-SNAPSHOT</version>
+			<version>1.1.5-SNAPSHOT</version>
 		</dependency>
 ```
 Or download the jar directly from: 
@@ -145,8 +145,8 @@ Note that to use the SNAPSHOT version, you must enable snapshots and a repositor
 
 Change History/Release Notes:
 
-Release 1.1.4-SNAPSHOT in branch 'master'
-========================================
+Release 1.1.4 - 28 Jul 2015
+===========================
 * Upgraded Java output to 1.7 source and target.
 
 Release 1.1.3 - 12 Mar 2015
