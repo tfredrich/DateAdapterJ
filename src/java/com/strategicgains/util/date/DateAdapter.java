@@ -55,7 +55,7 @@ implements TextAdapter<Date>
 		this(DATE_OUTPUT_FORMAT, DATE_INPUT_FORMATS);
 	}
 	
-	protected DateAdapter(String outputFormat, String... inputFormats)
+	public DateAdapter(String outputFormat, String... inputFormats)
 	{
 		this.processor = new DateFormatProcessor(outputFormat, inputFormats);
 	}

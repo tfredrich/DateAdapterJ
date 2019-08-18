@@ -145,6 +145,11 @@ Note that to use the SNAPSHOT version, you must enable snapshots and a repositor
 
 Change History/Release Notes:
 
+Release 1.1.5-SNAPSHOT (on Master)
+==================================
+* Uses 1.8 source and target.
+* Added LocalDateAdapter to support use of LocalDate for date-only properties.
+
 Release 1.1.4 - 28 Jul 2015
 ===========================
 * Upgraded Java output to 1.7 source and target.
