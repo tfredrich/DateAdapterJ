@@ -40,14 +40,14 @@ The adapters support configurable input and output formats. Built-in date handli
 ## Tech Stack
 
 - Java; Maven build (`pom.xml`)
-- JUnit 4.11 for tests
+- JUnit 5 for tests
 - No runtime dependencies are declared in the POM
 
 ## Project Structure
 
 ```text
-src/java/  Library source code
-test/java/ JUnit tests
+src/main/java/ Library source code
+src/test/java/ JUnit tests
 pom.xml     Maven build and dependency configuration
 LICENSE     Apache License 2.0
 ```

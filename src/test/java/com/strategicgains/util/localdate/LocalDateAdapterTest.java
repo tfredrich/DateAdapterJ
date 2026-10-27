@@ -17,14 +17,14 @@
 
 package com.strategicgains.util.localdate;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Month;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test the default, out-of-the-box date format support.

@@ -15,15 +15,15 @@
 */
 package com.strategicgains.util.date;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author toddf
@@ -34,7 +34,7 @@ public class HttpHeaderTimestampAdapterTest
 	private DateAdapter adapter = new HttpHeaderTimestampAdapter();
 	private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 	
-	@Before
+	@BeforeEach
 	public void setup()
 	{
 		calendar.clear();

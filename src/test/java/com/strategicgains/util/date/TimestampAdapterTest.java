@@ -17,16 +17,16 @@
 
 package com.strategicgains.util.date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test the default, out-of-the-box date format support.
@@ -39,7 +39,7 @@ public class TimestampAdapterTest
 	private DateAdapter adapter = new TimestampAdapter();
 	private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 	
-	@Before
+	@BeforeEach
 	public void setup()
 	{
 		calendar.clear();

@@ -17,61 +17,48 @@
 
 package com.strategicgains.util.date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-/**
- * Test the default, out-of-the-box date format support.
- * 
- * @author toddf
- * @since April 7, 2010
- */
-public class DateAdapterTest
+
+public class DateFormatProcessorTest
 {
-	private DateAdapter adapter = new DateAdapter();
+	private DateFormatProcessor dfp = new DateFormatProcessor("yyyy-MM-dd'T'HH:mm:ss'Z'",
+		"yyyy-MM-dd'T'HH:mm:ssZ",
+		"yyyy-MM-dd",
+		"MM/dd/yyyy");
 	private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 	
-	@Before
+	@BeforeEach
 	public void setup()
 	{
 		calendar.clear();
 	}
-	
-	@Test
-	public void shouldOutput_yyyy_MM_dd()
-	{
-		calendar.set(2010, Calendar.APRIL, 7, 13, 30, 37);
-		calendar.set(Calendar.MILLISECOND, 123);
-		assertEquals("2010-04-07", adapter.format(calendar.getTime()));
-	}
 
 	@Test
-	public void shouldParse_yyyy_MM_dd()
-	throws ParseException
+	public void shouldConvertOutputToUTC()
 	{
-		Date date = adapter.parse("2010-04-07");
-		assertNotNull(date);
-
-		calendar.setTime(date);
-		assertEquals(2010, calendar.get(Calendar.YEAR));
-		assertEquals(Calendar.APRIL, calendar.get(Calendar.MONTH));
-		assertEquals(7, calendar.get(Calendar.DAY_OF_MONTH));
-		assertTimePortionEmpty();
+		TimeZone tz = TimeZone.getTimeZone("MST");
+		Calendar c = Calendar.getInstance(tz);
+		c.clear(); // reset milliseconds
+		c.set(2010, Calendar.APRIL, 7, 11, 52, 17); // 2010-04-07T11:52:17 -07:00
+		assertEquals("2010-04-07T18:52:17Z", dfp.format(c.getTime()));
 	}
 
 	@Test
 	public void shouldParse_yyyyMMdd()
 	throws ParseException
 	{
-		Date date = adapter.parse("20100407");
+		Date date = dfp.parse("2010-04-07");
 		assertNotNull(date);
 
 		calendar.setTime(date);
@@ -85,7 +72,7 @@ public class DateAdapterTest
 	public void shouldParse_MMddyyyy()
 	throws ParseException
 	{
-		Date date = adapter.parse("04/07/2010");
+		Date date = dfp.parse("04/07/2010");
 		assertNotNull(date);
 
 		calendar.setTime(date);
@@ -96,17 +83,34 @@ public class DateAdapterTest
 	}
 
 	@Test
-	public void shouldParse_yyMMdd()
+	public void shouldParse_yyyyMMddTHHmmssz()
 	throws ParseException
 	{
-		Date date = adapter.parse("100407");
+		Date date = dfp.parse("2010-04-07T11:52:17GMT-07:00");
 		assertNotNull(date);
 
 		calendar.setTime(date);
 		assertEquals(2010, calendar.get(Calendar.YEAR));
 		assertEquals(Calendar.APRIL, calendar.get(Calendar.MONTH));
 		assertEquals(7, calendar.get(Calendar.DAY_OF_MONTH));
-		assertTimePortionEmpty();
+		assertEquals(18, calendar.get(Calendar.HOUR_OF_DAY));
+		assertEquals(52, calendar.get(Calendar.MINUTE));
+		assertEquals(17, calendar.get(Calendar.SECOND));
+		assertEquals(0, calendar.get(Calendar.MILLISECOND));
+	}
+	
+	@Test
+	public void shouldThrowParseException()
+	{
+		try
+		{
+			dfp.parse("todd-fredrich");
+			fail("ParseException not thrown on invalid date.");
+		}
+		catch (ParseException e)
+		{
+			// expected.
+		}
 	}
 
 	private void assertTimePortionEmpty()

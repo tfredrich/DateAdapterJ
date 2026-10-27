@@ -17,16 +17,17 @@
 
 package com.strategicgains.util.date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test the default, out-of-the-box date format support.
@@ -39,7 +40,7 @@ public class Iso8601TimepointAdapterTest
 	private DateAdapter adapter = new Iso8601TimepointAdapter();
 	private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 	
-	@Before
+	@BeforeEach
 	public void setup()
 	{
 		calendar.clear();
@@ -189,11 +190,10 @@ public class Iso8601TimepointAdapterTest
 		assertEquals(0, calendar.get(Calendar.MILLISECOND));
 	}
 
-	@Test(expected=ParseException.class)
+	@Test
 	public void shouldNotParse_yyyy_MM_ddTHH_mm_ss_blank_00_00()
-	throws ParseException
 	{
-		adapter.parse("2013-03-13T23:40:26 00:00");
+		assertThrows(ParseException.class, () -> adapter.parse("2013-03-13T23:40:26 00:00"));
 	}
 
 	@Test

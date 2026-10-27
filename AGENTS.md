@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This is a small Maven Java library. Production code is under `src/java`, organized by package (`com.strategicgains.util.date` and `com.strategicgains.util.localdate`, plus shared utilities). JUnit tests mirror those packages under `test/java`. The root `pom.xml` defines the build; `README.md` documents supported date formats and library usage. Do not commit generated `target/` output.
+This is a small Maven Java library. Production code is under `src/main/java`, organized by package (`com.strategicgains.util.date` and `com.strategicgains.util.localdate`, plus shared utilities). JUnit 5 tests mirror those packages under `src/test/java`. The root `pom.xml` defines the build; `README.md` documents supported date formats and library usage. Do not commit generated `target/` output.
 
 ## Build, Test, and Development Commands
 
@@ -18,7 +18,7 @@ Follow the existing Java style: tabs for indentation, braces on declarations and
 
 ## Testing Guidelines
 
-Tests use JUnit 4 and live in `test/java` alongside the package structure of the code they exercise. Name test classes with the `*Test` suffix (for example, `TimestampAdapterTest`) and add focused cases for new parsing, formatting, or edge-case behavior. Run the full suite with `mvn test`.
+Tests use JUnit 5 and live in `src/test/java` alongside the package structure of the code they exercise. Name test classes with the `*Test` suffix (for example, `TimestampAdapterTest`) and add focused cases for new parsing, formatting, or edge-case behavior. Run the full suite with `mvn test`.
 
 ## Commit & Pull Request Guidelines
 
