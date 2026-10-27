@@ -83,7 +83,7 @@
 				<version>0.12.0</version>
 				<extensions>true</extensions>
 				<configuration>
-					<publishingServerId>sonatype-nexus-staging</publishingServerId>
+					<publishingServerId>central</publishingServerId>
 					<autoPublish>true</autoPublish>
 					<waitUntil>published</waitUntil>
 				</configuration>
