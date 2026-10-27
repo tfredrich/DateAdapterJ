@@ -6,7 +6,7 @@ DateAdapterJ is a Java library for parsing and formatting `java.util.Date` value
 
 ### Prerequisites
 
-- Java 8 or later. The Maven compiler configuration targets Java 8 bytecode.
+- JDK 17 or later. The Maven compiler configuration targets Java 17 bytecode.
 - Apache Maven to build the project.
 
 ### Installation

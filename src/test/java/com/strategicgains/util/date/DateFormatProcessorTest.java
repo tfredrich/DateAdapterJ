@@ -47,7 +47,7 @@ public class DateFormatProcessorTest
 	@Test
 	public void shouldConvertOutputToUTC()
 	{
-		TimeZone tz = TimeZone.getTimeZone("MST");
+		TimeZone tz = TimeZone.getTimeZone("GMT-07:00");
 		Calendar c = Calendar.getInstance(tz);
 		c.clear(); // reset milliseconds
 		c.set(2010, Calendar.APRIL, 7, 11, 52, 17); // 2010-04-07T11:52:17 -07:00

@@ -10,7 +10,7 @@ This is a small Maven Java library. Production code is under `src/main/java`, or
 - `mvn test` compiles and runs the JUnit test suite.
 - `mvn package` runs the tests and creates the library JAR under `target/`.
 
-The POM targets Java 8 bytecode. Build and test with a supported JDK, and verify changes with `mvn test` before submitting.
+The POM targets Java 17 bytecode. Build and test with a supported JDK, and verify changes with `mvn test` before submitting.
 
 ## Coding Style & Naming Conventions
 
