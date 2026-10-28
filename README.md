@@ -17,11 +17,11 @@ Add the published artifact to your Maven project:
 <dependency>
     <groupId>com.strategicgains</groupId>
     <artifactId>DateAdapterJ</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.5</version>
 </dependency>
 ```
 
-The repository POM currently identifies the development version as `1.1.5-SNAPSHOT`. To use that snapshot, configure the Sonatype snapshots repository in your Maven settings or POM.
+The repository POM currently identifies the development version as `1.1.6-SNAPSHOT`. To use that snapshot, configure the Sonatype snapshots repository in your Maven settings or POM.
 
 ### Running
 
